@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony | Admin - Manage FAQs</title>
+    <style>
+        /* */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=1920') no-repeat center center fixed;
+            background-size: cover; color: white; min-height: 100vh; padding: 100px 20px;
+        }
+        .header { position: fixed; top: 0; width: 100%; padding: 30px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+        .sony-logo { font-size: 28px; letter-spacing: 10px; text-transform: uppercase; }
+        .back-btn { color: white; text-decoration: none; border: 1px solid rgba(255,255,255,0.4); padding: 8px 20px; border-radius: 20px; background: rgba(0,0,0,0.3); }
+
+        .glass-card { 
+            width: 100%; max-width: 600px; padding: 40px; border-radius: 35px; margin: 0 auto 40px;
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        input, textarea { width: 100%; padding: 15px; border-radius: 12px; border: none; background: rgba(255,255,255,0.9); margin-top: 10px; outline: none; color: #333; }
+        .publish-btn { width: 100%; padding: 18px; border-radius: 12px; border: none; background: #005a9c; color: white; font-weight: bold; margin-top: 25px; cursor: pointer; }
+
+        /* MANAGE SECTION */
+        .manage-list { width: 100%; max-width: 600px; margin: 0 auto; }
+        .admin-item { 
+            background: rgba(0,0,0,0.5); padding: 20px; border-radius: 20px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .delete-btn { background: #b22222; color: white; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="sony-logo">SONY</div>
+        <a href="home.html" class="back-btn">← BACK</a>
+    </header>
+
+    <div class="glass-card">
+        <h2 style="text-align: center; margin-bottom: 20px;">Add New Technical FAQ</h2>
+        <input type="text" id="faqTitle" placeholder="Question / Model (e.g., ROC)">
+        <textarea id="faqSteps" rows="3" placeholder="Detailed Steps (e.g., quarter 3 faq)"></textarea>
+        <div style="margin-top: 15px; border: 1px dashed rgba(255,255,255,0.3); padding: 15px; border-radius: 12px; text-align: center;">
+            <input type="file" id="faqFile" accept="application/pdf">
+        </div>
+        <button class="publish-btn" onclick="handleSave()">PUBLISH ENTRY</button>
+    </div>
+
+    <div class="manage-list">
+        <h3 style="margin-bottom: 15px; font-weight: 300;">Manage Entries</h3>
+        <div id="adminContainer"></div>
+    </div>
+
+    <script>
+        function handleSave() {
+            const title = document.getElementById('faqTitle').value;
+            const steps = document.getElementById('faqSteps').value;
+            const fileInput = document.getElementById('faqFile');
+            const file = fileInput.files[0];
+
+            if (!title || !steps) return alert("Fill required fields!");
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    saveEntry(title, steps, e.target.result, file.name);
+                };
+                reader.readAsDataURL(file); // Stores PDF as data string
+            } else {
+                saveEntry(title, steps, null, "No file");
+            }
+        }
+
+        function saveEntry(title, steps, fileData, fileName) {
+            let faqs = JSON.parse(localStorage.getItem('sony_faqs')) || [];
+            faqs.push({ title, steps, fileData, fileName, id: Date.now() });
+            localStorage.setItem('sony_faqs', JSON.stringify(faqs));
+            location.reload(); 
+        }
+
+        function loadManageList() {
+            const faqs = JSON.parse(localStorage.getItem('sony_faqs')) || [];
+            const container = document.getElementById('adminContainer');
+            faqs.forEach(f => {
+                container.innerHTML += `
+                    <div class="admin-item">
+                        <div>
+                            <strong>${f.title}</strong><br>
+                            <small style="opacity:0.6">${f.fileName}</small>
+                        </div>
+                        <button class="delete-btn" onclick="deleteEntry(${f.id})">DELETE</button>
+                    </div>`;
+            });
+        }
+
+        function deleteEntry(id) {
+            if(confirm("Are you sure?")) {
+                let faqs = JSON.parse(localStorage.getItem('sony_faqs')) || [];
+                faqs = faqs.filter(f => f.id !== id);
+                localStorage.setItem('sony_faqs', JSON.stringify(faqs));
+                location.reload();
+            }
+        }
+        loadManageList();
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony | Admin Login</title>
+    <style>
+        /* SONY BRAVIA CENTERED BACKGROUND */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body, html { 
+            height: 100%; width: 100%; overflow: hidden; 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=1920&auto=format&fit=crop'); 
+            background-size: cover; background-position: center;
+        }
+
+        .header { position: absolute; top: 0; width: 100%; padding: 50px 80px; z-index: 100; }
+        .sony-logo { color: white; font-size: 32px; letter-spacing: 14px; text-transform: uppercase; font-weight: 300; }
+
+        /* LOGIN HUB */
+        .main-container {
+            height: 100vh; width: 100vw;
+            display: flex; align-items: center; justify-content: center;
+            padding-top: 100px;
+        }
+        .login-card { 
+            width: 400px; padding: 50px; border-radius: 35px;
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+            text-align: center; color: white;
+        }
+        input { 
+            width: 100%; padding: 18px; margin: 10px 0; border-radius: 12px; border: none;
+            background: rgba(255,255,255,0.9); font-size: 16px;
+        }
+        .login-btn { 
+            width: 100%; padding: 18px; margin-top: 20px; border-radius: 12px; border: none;
+            background: #005a9c; color: white; font-weight: bold; cursor: pointer; transition: 0.3s;
+        }
+        .login-btn:hover { transform: scale(1.05); background: #0073c9; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="sony-logo">SONY</div>
+    </header>
+    <div class="main-container">
+        <div class="login-card">
+            <h2 style="margin-bottom: 25px; letter-spacing: 1px;">Admin Portal</h2>
+            <input type="text" placeholder="Employee ID">
+            <input type="password" placeholder="Password">
+            <button class="login-btn" onclick="location.href='options.html'">LOG IN</button>
+        </div>
+    </div>
+</body>
+</html>

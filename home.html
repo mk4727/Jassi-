@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony | Bravia Experience</title>
+    <style>
+        /* 1. THE BRAVIA PRODUCT: CENTERED & HD */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body, html { 
+            height: 100%; width: 100%; overflow: hidden; 
+            /* Centered Sony Bravia TV in a premium professional interior */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=1920&auto=format&fit=crop'); 
+            background-size: cover; background-position: center;
+        }
+
+        /* 2. BRANDING HEADER: No Overlap with Hub */
+        .header {
+            position: absolute; top: 0; width: 100%;
+            padding: 60px 80px; display: flex; justify-content: flex-start;
+            z-index: 100;
+        }
+        .sony-logo { color: white; font-size: 36px; letter-spacing: 16px; text-transform: uppercase; font-weight: 300; }
+
+        /* 3. CENTERED HUB: Spaced from Header */
+        .main-container {
+            height: 100vh; width: 100vw;
+            display: flex; align-items: center; justify-content: center;
+            padding-top: 150px; /* Essential buffer to keep branding clear */
+        }
+
+        .action-hub { 
+            display: flex; gap: 40px; padding: 45px 55px; border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.25); 
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        /* 4. BUTTONS */
+        .btn { 
+            padding: 24px 70px; border-radius: 25px; font-size: 19px; 
+            font-weight: 700; text-decoration: none; 
+            display: flex; align-items: center; gap: 15px;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+
+        .btn-check { background-color: #005a9c; color: white; }
+        .btn-add { background-color: white; color: #005a9c; }
+
+        .btn:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="sony-logo">SONY</div>
+    </header>
+
+    <div class="main-container">
+        <div class="action-hub">
+            <a href="faq-view.html" class="btn btn-check">
+                Check FAQ <span>→</span>
+            </a>
+            <a href="login.html" class="btn btn-add">
+                Add FAQ <span>+</span>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

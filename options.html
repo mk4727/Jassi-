@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony | Admin Options</title>
+    <style>
+        /* CENTERED SONY BRAVIA BACKGROUND */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body, html { 
+            height: 100%; width: 100%; overflow: hidden; 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=1920&auto=format&fit=crop'); 
+            background-size: cover; background-position: center;
+        }
+
+        /* HEADER BRANDING */
+        .header {
+            position: absolute; top: 0; width: 100%;
+            padding: 50px 80px; display: flex; justify-content: space-between; align-items: center;
+            z-index: 100;
+        }
+        .sony-logo { color: white; font-size: 32px; letter-spacing: 14px; text-transform: uppercase; font-weight: 300; }
+        .logout-btn { color: white; text-decoration: none; border: 1px solid rgba(255,255,255,0.4); padding: 12px 25px; border-radius: 12px; transition: 0.3s; }
+        .logout-btn:hover { background: #b22222; border-color: transparent; }
+
+        /* DASHBOARD HUB */
+        .main-container {
+            height: 100vh; width: 100vw;
+            display: flex; align-items: center; justify-content: center;
+            padding-top: 100px; /* Safe buffer for SONY logo */
+        }
+        .dashboard-card { 
+            display: flex; flex-direction: column; gap: 20px; padding: 50px; border-radius: 40px;
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+            text-align: center; color: white;
+        }
+        .opt-btn { 
+            padding: 20px 60px; border-radius: 15px; font-size: 18px; 
+            font-weight: bold; text-decoration: none; color: white; 
+            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+            transition: 0.4s;
+        }
+        .opt-btn:hover { background: #005a9c; transform: translateY(-5px); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="sony-logo">SONY</div>
+        <a href="home.html" class="logout-btn">LOG OUT</a>
+    </header>
+    <div class="main-container">
+        <div class="dashboard-card">
+            <h2 style="margin-bottom: 20px;">Management Console</h2>
+            <a href="add-faq.html" class="opt-btn">ADD NEW FAQ entry</a>
+            <a href="faq-view.html" class="opt-btn">EDIT EXISTING FAQ</a>
+        </div>
+    </div>
+</body>
+</html>

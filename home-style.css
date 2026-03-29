@@ -1,0 +1,37 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+
+body, html { height: 100%; overflow: hidden; }
+
+/* The High-Resolution Hero Area */
+.hero {
+    height: 100vh;
+    width: 100vw;
+    /* High-res image with matching color tones */
+    background: url('https://images.unsplash.com/photo-1593784991095-a205029471b6?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sony Header Elements */
+header { padding: 40px 60px; display: flex; align-items: center; gap: 20px; }
+.logo { color: white; letter-spacing: 7px; font-size: 24px; font-weight: 300; line-height: 1; }
+.header-divider { background: rgba(255,255,255,0.2); width: 300px; height: 1px; }
+
+/* Bottom-Left Action Buttons */
+.actions {
+    position: absolute; bottom: 80px; left: 80px;
+    display: flex; gap: 20px;
+}
+
+a { text-decoration: none; cursor: pointer; transition: 0.3s; font-size: 14px; font-weight: 600; }
+
+.btn-check { 
+    background: #005a9c; color: white; 
+    padding: 15px 30px; border-radius: 12px;
+}
+
+.btn-add { 
+    background: white; color: #005a9c; 
+    padding: 15px 30px; border-radius: 12px; font-weight: 700;
+}

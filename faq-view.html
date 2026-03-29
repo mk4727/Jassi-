@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony | Knowledge Base</title>
+    <style>
+        /* */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=1920') no-repeat center center fixed;
+            background-size: cover; color: white; padding-top: 120px; 
+        }
+        .header { position: fixed; top: 0; width: 100%; padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; }
+        .sony-logo { font-size: 32px; letter-spacing: 12px; text-transform: uppercase; }
+        .back-btn { color: white; text-decoration: none; border: 1px solid rgba(255,255,255,0.4); padding: 10px 25px; border-radius: 30px; }
+        
+        .list-container { width: 90%; max-width: 850px; margin: 0 auto; }
+        .faq-item { 
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); 
+            padding: 30px; border-radius: 25px; margin-bottom: 15px;
+            display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .btn-group { display: flex; gap: 10px; }
+        .action-btn { padding: 12px 22px; border-radius: 10px; border: none; cursor: pointer; font-weight: bold; color: white; text-decoration: none; }
+        .view-btn { background: #005a9c; }
+        .down-btn { background: rgba(255,255,255,0.2); border: 1px solid white; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="sony-logo">SONY</div>
+        <a href="home.html" class="back-btn">← BACK</a>
+    </header>
+
+    <div class="list-container" id="faqContainer"></div>
+
+    <script>
+        function loadFAQs() {
+            const faqs = JSON.parse(localStorage.getItem('sony_faqs')) || [];
+            const container = document.getElementById('faqContainer');
+            
+            faqs.forEach(f => {
+                container.innerHTML += `
+                    <div class="faq-item">
+                        <div>
+                            <h2 style="text-transform: lowercase;">${f.title}</h2>
+                            <p style="font-size:12px; opacity:0.6">${f.fileName}</p>
+                        </div>
+                        <div class="btn-group">
+                            <button class="action-btn view-btn" onclick="alert('STEPS:\\n${f.steps}')">VIEW</button>
+                            ${f.fileData ? `<a href="${f.fileData}" download="${f.fileName}" class="btn action-btn down-btn">DOWNLOAD</a>` : ''}
+                        </div>
+                    </div>`;
+            });
+        }
+        window.onload = loadFAQs;
+    </script>
+</body>
+</html>
